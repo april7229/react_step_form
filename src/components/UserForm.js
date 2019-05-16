@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import FormUserDetails from './FormUserDetails';
+import FormPersonalDetails from  './FormPersonalDetails';
 
 export class UserForm extends Component
 {
@@ -19,7 +20,7 @@ export class UserForm extends Component
         const { step } = this.state;
         this.setState( {
             step: step + 1
-        } )
+        } );
     }
     //go back to prev step
     prevStep = () =>
@@ -32,7 +33,7 @@ export class UserForm extends Component
     //Handle fields change
     handleChange = input => e =>
     {
-        this.stepState( { [ input ]: e.target.value } );
+        this.setState( { [ input ]: e.target.value } );
     }
     render() {
         const { step } = this.state;
@@ -50,7 +51,14 @@ export class UserForm extends Component
                     />
                 );
             case 2:
-                return <h1>FormPersonalDetails</h1>;
+                return (
+                    <FormPersonalDetails
+                        nextStep={this.nextStep}
+                        prevStep={this.prevStep}
+                        handleChange={this.handleChange}
+                        values={values}
+                    />
+                );
             case 3:
                 return <h1>confirm</h1>;
             case 4:
