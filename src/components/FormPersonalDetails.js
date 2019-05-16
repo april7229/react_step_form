@@ -18,7 +18,8 @@ export class FormPersonalDetails extends Component {
         e.preventDefault();
         this.props.prevStep();
 
-    };
+  };
+  
 
   render() {
      const {values, handleChange} = this.props;   
@@ -27,8 +28,8 @@ export class FormPersonalDetails extends Component {
         <React.Fragment>
         <AppBar title="Enter Personal Details" />
             <TextField
-            hintText="Enter Your Occupation"
-                    floatingLabelText="Occupation"  
+            hintText="Enter Your occupation"
+                    floatingLabelText="occupation"  
                     onChange={handleChange('occupation')}
                     defaultValue={values.occupation}
             />

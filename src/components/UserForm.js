@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import FormUserDetails from './FormUserDetails';
-import FormPersonalDetails from  './FormPersonalDetails';
+import FormPersonalDetails from './FormPersonalDetails';
+import Confirm from './Confirm';
 
 export class UserForm extends Component
 {
@@ -34,7 +35,7 @@ export class UserForm extends Component
     handleChange = input => e =>
     {
         this.setState( { [ input ]: e.target.value } );
-    }
+    };
     render() {
         const { step } = this.state;
         const { firstName, lastName, email, occupation, city, bio } = this.state;
@@ -48,7 +49,7 @@ export class UserForm extends Component
                 nextStep={this.nextStep}
                 handleChange={this.handleChange}
                 values={values}                        
-                    />
+                    /> 
                 );
             case 2:
                 return (
@@ -59,10 +60,19 @@ export class UserForm extends Component
                         values={values}
                     />
                 );
+            
             case 3:
-                return <h1>confirm</h1>;
+                return (
+                    <Confirm
+                        nextStep={this.nextStep}
+                        prevStep={this.prevStep}
+                        handleChange={this.handleChange}
+                        values={values}
+                    />
+                );
+                
             case 4:
-            return <h1>Sucess</h1>
+            return <h1>Success Your Info is now on File</h1>
             
         }
     }

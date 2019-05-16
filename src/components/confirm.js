@@ -1,61 +1,85 @@
 import React, { Component } from 'react';
-import MuiThemeProvider from 
-'material-ui/styles/MuiThemeProvider';
+import MuiThemeProvider from
+  'material-ui/styles/MuiThemeProvider';
 import {List, ListItem} from 'material-ui/List';
 import RaisedButton from 'material-ui/RaisedButton';
 import AppBar from 'material-ui/AppBar';
-import Confirm from './Confirm';
 
 
-export class FormPersonalDetails extends Component {
-    continue = e => {
-        e.preventDefault();
-        this.props.nextStep();
+export class FormUserDetails extends Component
+{
+  continue = e =>
+  {
+    e.preventDefault();
+    this.props.nextStep();
 
-    }
-  render() {
-     const {values, handleChange} = this.props;   
+  }
+  back = e =>
+  {
+    e.preventDefault();
+    this.props.prevStep();
+
+  };
+  render()
+  {
+    const { values: {firstName, lastName, email,occupation,city,bio} } = this.props;
     return (
       <MuiThemeProvider>
         <React.Fragment>
-        {/* <AppBar title="Enter User Details" /> */}
-            <TextField
-            hintText="Enter Your First Name"
-            floatingLabelText="First Name"  
-            onChange={handleChange('firstName')}
-            defaultValue={values.firstName}
+          <AppBar title="Confirm User Data" />
+          <List>
+            <ListItem
+              primaryText="First Name"
+              secondaryText={firstName}
+            />
+            <ListItem
+              primaryText="Last Name"
+              secondaryText={lastName}
+            />
+            <ListItem
+              primaryText="Email"
+              secondaryText={email}
+            />
+            <ListItem
+              primaryText="City"
+              secondaryText={city}
+            />
+            <ListItem
+              primaryText="Bio"
+              secondaryText={bio}
+            />
+            <ListItem
+              primaryText="Occupation"
+              secondaryText={occupation}
             />
             <br/>
-          <TextField
-            
-            hintText="Enter Your Last Name"
-            floatingLabelText="Last Name"  
-            onChange={handleChange('LastName')}
-            defaultValue={values.lasttName}
-            />
-             <br/>
-             <TextField
-            hintText="Enter Your Email"
-            floatingLabelText="Email"  
-            onChange={handleChange('Email')}
-            defaultValue={values.Email}
-            />
-            <br/>
-            <RaisedButton
-            label="continue"
+          </List>
+        
+          
+        
+          <RaisedButton
+            label="confirm $continue"
             primary={true}
             style={styles.button}
             onClick={this.continue}
-            /
-            </React.Fragment>
+          />
+          <RaisedButton
+            label="Back"
+            primary={false}
+            style={styles.button}
+            onClick={this.back}
+          />
+
+
+        </React.Fragment>
       </MuiThemeProvider>
     )
   }
 }
-const styles ={
-    button:{
-        margin: 15
-    }
+const styles = {
+  button: {
+    margin: 15
+  }
 }
 
-export default FormPersonalDetails;
+export default FormUserDetails;
